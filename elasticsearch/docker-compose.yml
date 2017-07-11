@@ -1,0 +1,10 @@
+version: '2'
+services:
+  elas:
+    build: .
+    restart: always
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - "./data:/usr/share/elasticsearch/data:rw"
