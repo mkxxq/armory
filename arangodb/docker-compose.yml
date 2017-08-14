@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  postgres:
+    image: arangodb:3.1.10
+    restart: always
+    ports:
+      - 8529:8529
+    volumes:
+      - .data:/var/lib/arangodb
+    environment:
+      ARANGO_RANDOM_ROOT_PASSWORD: arangodb
+      
