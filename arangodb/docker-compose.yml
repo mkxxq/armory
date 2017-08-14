@@ -9,5 +9,5 @@ services:
     volumes:
       - .data:/var/lib/arangodb
     environment:
-      ARANGO_RANDOM_ROOT_PASSWORD: arangodb
+      ARANGO_ROOT_PASSWORD: arangodb
       
