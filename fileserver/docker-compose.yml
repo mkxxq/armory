@@ -1,0 +1,11 @@
+version: '2'
+
+services:  
+  fileserver:
+    image: nginx:1.13
+    ports: 
+      - 8099:8081
+    restart: always
+    volumes: 
+      - .data/files:/files
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
