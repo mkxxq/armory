@@ -1,0 +1,19 @@
+version: "3"
+services:
+
+  zookeeper:
+    image: zookeeper:3.4
+    ports:
+      - "2181:2181"
+      - "3888:3888"
+  kafka:
+    image: wurstmeister/kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 10.31.36.178
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
