@@ -1,10 +1,31 @@
-version: '2'
+version: '2.2'
 services:
-  elas:
-    build: .
-    restart: always
-    ports:
-      - "9200:9200"
-      - "9300:9300"
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     volumes:
-      - "./data:/usr/share/elasticsearch/data:rw"
+      - ./esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - esnet
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.2
+    environment: 
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    ports:
+      - 5601:5601
+    networks:
+      - esnet
+    depends_on:
+      - elasticsearch
+
+networks:
+  esnet:
