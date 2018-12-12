@@ -13,4 +13,12 @@ $ kafka-topics --zookeeper zookeeper:2181 --describe --topic users
 
 # 增大分区数
 $ kafka-topics --alter --zookeeper zookeeper:2181 --partitions 3 --topic users
+
+# 查看消费组
+$ kafka-consumer-groups --bootstrap-server broker:9092 --list
+$ kafka-consumer-groups --bootstrap-server broker:9092 --describe --group pt_003
+
+# 重设消费组的offset
+$ kafka-consumer-groups --reset-offsets --bootstrap-server broker:9092 --topic ETHMain_confirmed_transaction --group pt003 --to-offset 1 --execute
+
 ```

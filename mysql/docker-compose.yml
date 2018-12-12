@@ -1,0 +1,16 @@
+version: "3"
+services:
+
+  mysql:
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    container_name: mysql
+    volumes:
+      - "./mysql:/var/lib/mysql"
+    environment:
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_DATABASE: beecoin
+      MYSQL_ROOT_PASSWORD: root
