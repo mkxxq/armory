@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:10
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: zabbix
+  gateway:
+    image: zabbix/zabbix-java-gateway:alpine-3.4.15
+    restart: always
+
+
+  zabbix:
+    image: zabbix/zabbix-server-pgsql:alpine-3.4.15
+    restart: always
+    ports:
+      - 10051:10051
+    depends_on:
+      - db
+    links:
+      - db
+      - gateway
+    environment:
+      DB_SERVER_HOST: db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      ZBX_JAVAGATEWAY: gateway
+
+  zabbix_web:
+    image: zabbix/zabbix-web-nginx-pgsql:alpine-3.4.15
+    restart: always
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+      - zabbix
+    links:
+      - db
+      - zabbix
+
+    environment:
+      DB_SERVER_HOST: db
+      ZBX_SERVER_HOST: zabbix
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  
+
