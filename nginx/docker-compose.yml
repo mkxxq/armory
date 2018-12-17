@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+
+  nginx:
+
+    image: nginx:1.15
+    ports:
+    - 5000:5000
+    volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+        max-file: "10"
