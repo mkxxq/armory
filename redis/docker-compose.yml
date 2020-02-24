@@ -1,8 +1,10 @@
-version: '2'
+version: '3'
 
 services:
   redis:
-    build: .
+    image: redis:4
     restart: always
     ports:
       - 6379:6379
+    volumes:
+      - "./redis:/data" 
