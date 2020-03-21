@@ -1,5 +1,5 @@
 # to use this: docker-compose -f docker-compose.yml -f rpm-overides.yml up
-version: '2'
+version: '3'
 services:
   zookeeper:
     image: confluentinc/cp-rpm-zookeeper

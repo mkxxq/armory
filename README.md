@@ -12,17 +12,21 @@ xxx/xxx.conf 是xxx的配置文件
 
 ## install docker
 docker官方安装指南[https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
-以下是apt系简单安装
+
+以下是脚本安装
 ```bash
-sudo apt install docker.io
+# 获取安装脚本
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+# 使用aliyun的源安装
+$ sudo sh get-docker.sh --mirror Aliyun
 ```
 
 ## install docker-compose
 docker-compose官方安装指南[https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
 ```bash
-curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$ chmod +x /usr/local/bin/docker-compose
 ```
 
 ## start postgresql example
