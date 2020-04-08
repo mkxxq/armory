@@ -37,3 +37,11 @@ cd postgresql
 mkdir .data
 sudo docker-compose up
 ```
+
+## debug docker image
+以`debian:10-slim`为例:
+```bash
+docker run -i --name debug debain:10.-slim 
+# open other terminal window
+docker exec -it debug bash
+```
