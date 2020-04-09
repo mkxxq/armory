@@ -5,7 +5,7 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
     && sed -i 's/ftp.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
     && sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list 
 RUN apt update \
-    && apt install -y  --no-install-recommends git curl python python-dev
+    && apt install -y  --no-install-recommends git curl python python-dev build-essential
 
 RUN mkdir ~/.pip && echo "[global]\nindex-url = https://mirrors.aliyun.com/pypi/simple/\n[install]\ntrusted-host=mirrors.aliyun.com\n" >> ~/.pip/pip.conf
 
@@ -28,7 +28,6 @@ ENV GOROOT /usr/local/share/go
 ENV GOPATH /go
 ENV GO111MODULE on
 ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
-RUN apt install -y build-essential
 RUN https_proxy=$HTTPS_PROXY go get -v github.com/gopherdata/gophernotes \
     && mkdir -p ~/.local/share/jupyter/kernels/gophernotes \
     && cd ~/.local/share/jupyter/kernels/gophernotes \
