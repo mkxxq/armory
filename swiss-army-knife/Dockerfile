@@ -36,6 +36,7 @@ RUN https_proxy=$HTTPS_PROXY go get -v github.com/gopherdata/gophernotes \
 
 
 # start
+RUN echo 'export PATH="${GOROOT}/bin:${GOPATH}/bin:${PATH}"' >> /etc/profile
 RUN mkdir /notebooks
 WORKDIR /notebooks
 EXPOSE 8888
